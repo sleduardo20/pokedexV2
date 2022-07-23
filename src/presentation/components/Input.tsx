@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
-import React, { InputHTMLAttributes, useEffect, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 import styled from "styled-components";
-import { IconSearch } from "../model/Icons";
+import { IconClose, IconSearch } from "./Icons";
 
 type Props = {
   value: string;
+  onClear: () => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export function Input({ value, ...rest }: Props) {
+export function Input({ value, onClear, ...rest }: Props) {
   const [isFocused, setFocused] = useState(false);
   const [isFilled, setFilled] = useState(false);
 
@@ -31,6 +32,7 @@ export function Input({ value, ...rest }: Props) {
         value={value}
         {...rest}
       />
+      {isFilled && <IconClose size={20} onClick={onClear} />}
     </Container>
   );
 }
@@ -43,21 +45,26 @@ type ContainerProps = {
 const Container = styled.div<ContainerProps>`
   width: 100%;
   position: relative;
-  height: 3.2rem;
+  height: 4.2rem;
   padding: 0.4rem;
   background: ${({ theme }) => theme.colors.black.white};
   border-radius: 0.8rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.black.lightGray};
   display: flex;
   align-items: center;
-  justify-content: center;
 
-  svg {
+  > svg {
     fill: ${({ theme }) => theme.colors.black.mediumGray};
     position: absolute;
     left: ${({ isFocused, isFilled }) =>
       isFocused || isFilled ? "4px" : "calc(50% - 58px)"};
     transition: all 0.4s;
+  }
+
+  svg:last-child {
+    position: absolute;
+    left: calc(100% - 24px);
+    cursor: pointer;
   }
 
   input {

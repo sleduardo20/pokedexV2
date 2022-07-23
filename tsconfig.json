@@ -20,7 +20,11 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "files": ["src/@types/globals.d.ts"],
   "include": [
-    "src"
+    "src",
+    "./**/*.js",
+    "./assets/*.svg",
+    "./**/*.ts",
   ]
 }

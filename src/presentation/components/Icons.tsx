@@ -3,6 +3,7 @@ import {
   AiOutlineSortDescending as IconSortDescending,
   AiOutlineSearch as IconSearch,
   AiOutlineHourglass as IconWeight,
+  AiOutlineClose as IconClose,
 } from "react-icons/ai";
 
 import {
@@ -20,4 +21,5 @@ export {
   IconSearch,
   IconHeight,
   IconWeight,
+  IconClose,
 };

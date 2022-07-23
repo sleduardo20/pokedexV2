@@ -1,11 +1,12 @@
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./styles/global";
-import { theme } from "./styles/theme";
+import { GlobalStyles } from "../local/styles/global";
+import { theme } from "../local/styles/theme";
+import { Search } from "./pages/search/Search";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <h1>World hold on.</h1>
+      <Search />
       <GlobalStyles />
     </ThemeProvider>
   );
