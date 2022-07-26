@@ -3,16 +3,14 @@ import axios from "axios";
 import { PokedexGateway, Pokemon } from "../models/PokemonType";
 
 export class HTTPPokedexGateway implements PokedexGateway {
-  private DEFAULT_ROUTE = "https://pokeapi.co/api/v2/pokemon";
+  private BASE_URL = process.env.REACT_APP_API;
 
   private API = axios.create({
-    baseURL: this.DEFAULT_ROUTE,
+    baseURL: this.BASE_URL,
   });
 
   async getPokemon(name: string) {
-    const { data: pokemon } = await this.API.get<Pokemon>(
-      `${this.DEFAULT_ROUTE}/${name}`
-    );
+    const { data: pokemon } = await this.API.get<Pokemon>(`/${name}`);
 
     return Promise.resolve(pokemon);
   }
