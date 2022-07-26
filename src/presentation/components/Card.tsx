@@ -25,15 +25,15 @@ export function Card({ id, name, type, urlImage }: Props) {
 
 const Container = styled.div<{ typePokemon: PokemonType }>`
   text-align: center;
-  width: 32.8rem;
+  width: 23.2rem;
   padding: 0.4rem 0.4rem 0.4rem;
-  height: 36rem;
+  height: 24.8rem;
   border-radius: 0.8rem;
   background-color: ${({ theme, typePokemon }) =>
     theme.colors.type[typePokemon]};
 
   span {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
     margin: 0.8rem 0 0 0;
     align-self: flex-start;
     color: ${({ theme, typePokemon }) => theme.colors.type[typePokemon]};
@@ -49,9 +49,20 @@ const Container = styled.div<{ typePokemon: PokemonType }>`
 
 const Content = styled.div`
   display: flex;
-  height: 28rem;
+  padding: 0 0.4rem;
+  max-width: 32rem;
+  height: 18.8rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem 0.4rem 0 0;
   background-color: ${({ theme }) => theme.colors.black.white};
+
+  picture {
+    padding: 0.4rem;
+  }
+
+  img {
+    width: 100%;
+    object-fit: fill;
+  }
 `;
