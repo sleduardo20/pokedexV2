@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { FormEvent, useState } from "react";
 import { Wrapper } from "../../components/Wrapper";
-import { Container, Header, Logo, SectionCards } from "./styles";
+import { Container, Header, Logo } from "./styles";
 import logoPokedex from "../../assets/logoPokedex.svg";
-
 import { Input } from "../../components/Input";
-import { Card } from "../../components/Card";
 import { IconSortAscending } from "../../components/Icons";
+import { ListCards } from "../../components/ListCards";
+
+import cardMock from "../../../mocks/card";
 
 export function Search() {
   const [search, setSearch] = useState("");
@@ -24,7 +25,6 @@ export function Search() {
         <Header>
           <Logo>
             <img src={logoPokedex} alt="Logo Pokedex" />
-            <h1>Pokedex</h1>
           </Logo>
 
           <IconSortAscending size={24} />
@@ -36,13 +36,8 @@ export function Search() {
             onClear={handleClearSearch}
           />
         </form>
-        <SectionCards>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </SectionCards>
+
+        <ListCards cards={cardMock} />
       </Container>
     </Wrapper>
   );

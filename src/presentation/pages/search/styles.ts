@@ -26,10 +26,3 @@ export const Logo = styled.section`
     font-size: 1.6em;
   }
 `;
-
-export const SectionCards = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 0.8rem;
-  align-content: center;
-`;
