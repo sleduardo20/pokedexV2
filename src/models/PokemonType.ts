@@ -37,6 +37,18 @@ export interface Pokemon {
   moves: Moves[];
 }
 
+export interface ListPokemons {
+  count: number;
+  next: string;
+  previous: string;
+  results: [
+    {
+      name: string;
+      url: string;
+    }
+  ];
+}
+
 export interface PokedexGateway {
   getPokemon: (name: string) => Promise<Pokemon>;
 }
