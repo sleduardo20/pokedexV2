@@ -40,7 +40,7 @@ export interface Pokemon {
 export interface ListPokemons {
   count: number;
   next: string;
-  previous: string;
+  previous: string | null;
   results: [
     {
       name: string;
@@ -50,7 +50,8 @@ export interface ListPokemons {
 }
 
 export interface PokedexGateway {
-  getPokemon: (name: string) => Promise<Pokemon>;
+  getPokemon: (id: number) => Promise<Pokemon>;
+  getListPokemon: (params: string) => Promise<ListPokemons>;
 }
 
 export enum PokemonType {
