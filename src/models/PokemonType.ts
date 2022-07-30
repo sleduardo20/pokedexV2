@@ -50,7 +50,7 @@ export interface ListPokemons {
 }
 
 export interface PokedexGateway {
-  getPokemon: (id: number) => Promise<Pokemon>;
+  getPokemon: (name: string) => Promise<Pokemon>;
   getListPokemon: (params: string) => Promise<ListPokemons>;
 }
 

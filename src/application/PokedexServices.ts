@@ -7,8 +7,8 @@ export class PokedexService {
     this.gateway = gateway;
   }
 
-  async getPokemon(id: number) {
-    return this.gateway.getPokemon(id);
+  async getPokemon(name: string) {
+    return this.gateway.getPokemon(name);
   }
 
   async getListPokemon(params: string) {

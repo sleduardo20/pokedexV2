@@ -9,8 +9,8 @@ export class HTTPPokedexGateway implements PokedexGateway {
     baseURL: this.BASE_URL,
   });
 
-  async getPokemon(id: number) {
-    const { data: pokemon } = await this.API.get<Pokemon>(`/${id}`);
+  async getPokemon(name: string) {
+    const { data: pokemon } = await this.API.get<Pokemon>(`/${name}`);
 
     return Promise.resolve(pokemon);
   }
