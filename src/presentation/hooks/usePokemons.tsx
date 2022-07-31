@@ -14,11 +14,27 @@ export const usePokemons = (loadingMore: number) => {
     {} as ListPokemons
   );
 
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+
   const getListPokemons = async () => {
     setLoading(true);
     const newListPokemons = await pokedexService.getListPokemon(params);
     setParams(newListPokemons.next.slice(34));
     setListPokemons(newListPokemons);
+
+    const newPokemons: Pokemon[] = [];
+    const promisePokemon = newListPokemons.results.map(async (result) => {
+      try {
+        const newPokemon = await pokedexService.getPokemon(result.name);
+        newPokemons.push(newPokemon);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+
+    await Promise.all(promisePokemon);
+
+    setPokemons([...pokemons, ...newPokemons]);
 
     setLoading(false);
   };
@@ -27,5 +43,5 @@ export const usePokemons = (loadingMore: number) => {
     getListPokemons();
   }, [loadingMore]);
 
-  return { listPokemons, loading };
+  return { pokemons, loading };
 };
