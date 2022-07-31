@@ -59,10 +59,12 @@ const Content = styled.div`
 
   picture {
     padding: 0.4rem;
+    height: 100%;
   }
 
   img {
     width: 100%;
+    height: 100%;
     object-fit: fill;
   }
 `;

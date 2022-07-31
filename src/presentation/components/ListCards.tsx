@@ -27,14 +27,17 @@ export function ListCards({ cards }: Props) {
 
 const Container = styled.article`
   margin-top: 4rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
   justify-content: space-between;
   row-gap: 4rem;
+  column-gap: 7.6rem;
 
   ${media.lessThan("large")`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    column-gap: 0;
     align-items: stretch;
     
   `};
