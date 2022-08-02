@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.article`
   width: 100%;
-  padding: 2.4rem 1.6rem 0;
+  padding: 2.4rem 1.6rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,4 +25,9 @@ export const Logo = styled.section`
   h1 {
     font-size: 1.6em;
   }
+`;
+
+export const LoadingMoreButton = styled.div`
+  width: 70%;
+  margin-top: 3.2rem;
 `;

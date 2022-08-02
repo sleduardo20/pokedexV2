@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FormEvent, useMemo, useState } from "react";
 
 import { Wrapper } from "../../components/Wrapper";
@@ -8,7 +9,8 @@ import { ListCards } from "../../components/ListCards";
 import logoPokedex from "../../assets/logoPokedex.svg";
 import { usePokemons } from "../../hooks/usePokemons";
 import { PokemonType } from "../../../models/PokemonType";
-import { Container, Header, Logo } from "./styles";
+import { Container, Header, LoadingMoreButton, Logo } from "./styles";
+import { Loading, LoadingMore } from "../../components/Loading";
 
 export function Search() {
   const [search, setSearch] = useState("");
@@ -16,26 +18,30 @@ export function Search() {
 
   const { pokemons, loading } = usePokemons(loadingMore);
 
-  console.log(loading, pokemons);
+  const loadingPokemons = pokemons.length === 0;
 
   const cards = useMemo(
     () =>
-      pokemons.map(({ id, name, types, sprites }) => ({
-        id,
-        name,
-        urlImage: sprites.other.dream_world.front_default,
-        type: types[0].type.name as PokemonType,
-      })),
+      pokemons
+        .map(({ id, name, types, sprites }) => ({
+          id,
+          name,
+          urlImage: sprites.other.dream_world.front_default,
+          type: types[0].type.name as PokemonType,
+        }))
+        .sort((a, b) =>
+          a.id
+            .toString()
+            .localeCompare(b.id.toString(), undefined, { numeric: true })
+        ),
     [pokemons]
   );
 
-  const handleClearSearch = () => {
-    console.log("clear value");
-  };
-
+  console.log(loading);
   const handleOnSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
+
   return (
     <Wrapper>
       <Container>
@@ -50,14 +56,25 @@ export function Search() {
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onClear={handleClearSearch}
+            onClear={() => console.log(search)}
           />
         </form>
+        {loadingPokemons ? <Loading /> : <ListCards cards={cards} />}
 
-        <ListCards cards={cards} />
-        <button type="button" onClick={() => setLoadingMore(loadingMore + 1)}>
-          loading more
-        </button>
+        {pokemons.length > 1 && (
+          <LoadingMoreButton>
+            {loading ? (
+              <LoadingMore />
+            ) : (
+              <button
+                onClick={() => setLoadingMore(loadingMore + 1)}
+                type="button"
+              >
+                Carregar Mais
+              </button>
+            )}
+          </LoadingMoreButton>
+        )}
       </Container>
     </Wrapper>
   );
