@@ -28,6 +28,25 @@ export const Logo = styled.section`
 `;
 
 export const LoadingMoreButton = styled.div`
-  width: 70%;
   margin-top: 3.2rem;
+  margin-bottom: 1.6rem;
+  display: flex;
+  justify-content: center;
+
+  button {
+    height: 4.6rem;
+    width: 20rem;
+    border-radius: 0.8rem;
+    outline: none;
+    border: none;
+    background: ${({ theme }) => theme.colors.type.fighting};
+    color: ${({ theme }) => theme.colors.black.lightGray};
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    :hover {
+      filter: brightness(1.06);
+    }
+  }
 `;

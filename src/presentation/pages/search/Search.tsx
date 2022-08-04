@@ -37,11 +37,10 @@ export function Search() {
     [pokemons]
   );
 
-  console.log(loading);
   const handleOnSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
-
+  console.log(loading);
   return (
     <Wrapper>
       <Container>
@@ -59,6 +58,7 @@ export function Search() {
             onClear={() => console.log(search)}
           />
         </form>
+
         {loadingPokemons ? <Loading /> : <ListCards cards={cards} />}
 
         {pokemons.length > 1 && (
