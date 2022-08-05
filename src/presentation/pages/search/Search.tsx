@@ -19,6 +19,7 @@ export function Search() {
   const { pokemons, loading } = usePokemons(loadingMore);
 
   const loadingPokemons = pokemons.length === 0;
+  const showButtonLoadingMore = pokemons.length > 1;
 
   const cards = useMemo(
     () =>
@@ -40,7 +41,7 @@ export function Search() {
   const handleOnSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
-  console.log(loading);
+
   return (
     <Wrapper>
       <Container>
@@ -61,7 +62,7 @@ export function Search() {
 
         {loadingPokemons ? <Loading /> : <ListCards cards={cards} />}
 
-        {pokemons.length > 1 && (
+        {showButtonLoadingMore && (
           <LoadingMoreButton>
             {loading ? (
               <LoadingMore />
