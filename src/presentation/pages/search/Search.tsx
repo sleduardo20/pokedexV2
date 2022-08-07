@@ -1,46 +1,57 @@
 /* eslint-disable no-unused-vars */
-import { FormEvent, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Wrapper } from "../../components/Wrapper";
 import { Input } from "../../components/Input";
-import { IconSortAscending } from "../../components/Icons";
+import { IconSortAlphabetical, IconSortNumeric } from "../../components/Icons";
 import { ListCards } from "../../components/ListCards";
 
 import logoPokedex from "../../assets/logoPokedex.svg";
 import { usePokemons } from "../../hooks/usePokemons";
 import { PokemonType } from "../../../models/PokemonType";
-import { Container, Header, LoadingMoreButton, Logo } from "./styles";
+import {
+  Container,
+  Header,
+  LoadingMoreButton,
+  Logo,
+  IconsOrder,
+} from "./styles";
 import { Loading, LoadingMore } from "../../components/Loading";
+import { theme } from "../../../local/styles/theme";
 
 export function Search() {
   const [search, setSearch] = useState("");
   const [loadingMore, setLoadingMore] = useState(0);
+  const [orderNumeric, setOrderNumeric] = useState(true);
 
   const { pokemons, loading } = usePokemons(loadingMore);
 
   const loadingPokemons = pokemons.length === 0;
   const showButtonLoadingMore = pokemons.length > 1;
 
-  const cards = useMemo(
-    () =>
-      pokemons
-        .map(({ id, name, types, sprites }) => ({
-          id,
-          name,
-          urlImage: sprites.other.dream_world.front_default,
-          type: types[0].type.name as PokemonType,
-        }))
-        .sort((a, b) =>
-          a.id
-            .toString()
-            .localeCompare(b.id.toString(), undefined, { numeric: true })
-        ),
-    [pokemons]
-  );
+  const cards = useMemo(() => {
+    const cardsFormated = pokemons.map(({ id, name, types, sprites }) => ({
+      id,
+      name,
+      urlImage: sprites.other.dream_world.front_default,
+      type: types[0].type.name as PokemonType,
+    }));
 
-  const handleOnSubmit = (e: FormEvent) => {
-    e.preventDefault();
-  };
+    if (orderNumeric) {
+      return cardsFormated.sort((a, b) =>
+        a.id
+          .toString()
+          .localeCompare(b.id.toString(), undefined, { numeric: true })
+      );
+    }
+
+    return cardsFormated.sort((a, b) => a.name.localeCompare(b.name));
+  }, [pokemons, orderNumeric]);
+
+  const filterCards =
+    search.length > 0
+      ? cards.filter(({ name }) => name.includes(search))
+      : cards;
 
   return (
     <Wrapper>
@@ -49,18 +60,36 @@ export function Search() {
           <Logo>
             <img src={logoPokedex} alt="Logo Pokedex" />
           </Logo>
-
-          <IconSortAscending size={24} />
+          <IconsOrder>
+            <IconSortAlphabetical
+              size={24}
+              color={
+                !orderNumeric
+                  ? `${theme.colors.type.fighting}`
+                  : `${theme.colors.type.dark}`
+              }
+              onClick={() => setOrderNumeric(false)}
+            />
+            <IconSortNumeric
+              size={24}
+              color={
+                orderNumeric
+                  ? `${theme.colors.type.fighting}`
+                  : `${theme.colors.type.dark}`
+              }
+              onClick={() => setOrderNumeric(true)}
+            />
+          </IconsOrder>
         </Header>
-        <form onSubmit={handleOnSubmit}>
+        <form>
           <Input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            onClear={() => console.log(search)}
+            onClear={() => setSearch("")}
           />
         </form>
 
-        {loadingPokemons ? <Loading /> : <ListCards cards={cards} />}
+        {loadingPokemons ? <Loading /> : <ListCards cards={filterCards} />}
 
         {showButtonLoadingMore && (
           <LoadingMoreButton>

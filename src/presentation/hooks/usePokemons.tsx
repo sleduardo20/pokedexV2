@@ -34,7 +34,7 @@ export const usePokemons = (loadingMore: number) => {
 
     await Promise.all(promisePokemon);
 
-    const DELAY = 1500;
+    const DELAY = 1000;
 
     setTimeout(() => {
       setPokemons([...pokemons, ...newPokemons]);

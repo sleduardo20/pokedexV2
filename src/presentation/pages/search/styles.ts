@@ -50,3 +50,16 @@ export const LoadingMoreButton = styled.div`
     }
   }
 `;
+
+export const IconsOrder = styled.div`
+  svg {
+    :hover {
+      cursor: pointer;
+      fill: ${({ theme }) => theme.colors.type.dragon};
+    }
+  }
+
+  > svg {
+    margin-left: 1.6rem;
+  }
+`;
