@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-extraneous-dependencies */
-const { defaults } = require("jest-config");
+import type { Config } from "@jest/types";
 
-module.exports = {
+const config: Config.InitialOptions = {
   verbose: true,
   collectCoverage: true,
   collectCoverageFrom: [
@@ -11,9 +9,13 @@ module.exports = {
     "!src/mocks/**",
     "!src/**/styles.ts",
   ],
-  moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   transform: {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
       "<rootDir>/.jest/transformer.js",
+    "^.+\\.(ts|tsx)?$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
   },
 };
+
+export default config;
