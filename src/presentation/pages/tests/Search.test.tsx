@@ -1,8 +1,8 @@
-import { render } from "@testing-library/react";
+import { renderWithTheme } from "../../utils/tests";
 import { Search } from "../search/Search";
 
 describe("Search page", () => {
   it("should be render page correctly", () => {
-    expect(render(<Search />)).toBeTruthy();
+    expect(renderWithTheme(<Search />)).toBeTruthy();
   });
 });
