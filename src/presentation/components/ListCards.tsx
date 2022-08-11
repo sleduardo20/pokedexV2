@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import styled from "styled-components";
 import media from "styled-media-query";
 import { PokemonType } from "../../models/PokemonType";

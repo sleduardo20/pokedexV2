@@ -1,7 +1,3 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { pokedexService } from "../../application";
 import { ListPokemons, Pokemon } from "../../models/PokemonType";

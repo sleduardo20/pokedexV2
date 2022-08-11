@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 import axios from "axios";
 import { ListPokemons, PokedexGateway, Pokemon } from "../models/PokemonType";
 

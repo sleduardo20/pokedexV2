@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import styled from "styled-components";
 import media from "styled-media-query";
 import podkeball from "../assets/pokeball-loading.svg";

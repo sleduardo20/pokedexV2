@@ -32,7 +32,9 @@ export function Input({ value, onClear, ...rest }: Props) {
         value={value}
         {...rest}
       />
-      {isFilled && <IconClose size={20} onClick={onClear} />}
+      {isFilled && (
+        <IconClose data-testid="icon-close" size={20} onClick={onClear} />
+      )}
     </Container>
   );
 }
