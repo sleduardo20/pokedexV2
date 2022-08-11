@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import { useMemo, useState } from "react";
-
 import { Wrapper } from "../../components/Wrapper";
 import { Input } from "../../components/Input";
 import { IconSortAlphabetical, IconSortNumeric } from "../../components/Icons";
@@ -25,7 +24,6 @@ export function Search() {
   const [orderNumeric, setOrderNumeric] = useState(true);
 
   const { pokemons, loading } = usePokemons(loadingMore);
-
   const loadingPokemons = pokemons.length === 0;
   const showButtonLoadingMore = pokemons.length > 1;
 
@@ -62,6 +60,7 @@ export function Search() {
           </Logo>
           <IconsOrder>
             <IconSortAlphabetical
+              data-testid="icon-order-name"
               size={24}
               color={
                 !orderNumeric
@@ -72,6 +71,7 @@ export function Search() {
             />
             <IconSortNumeric
               size={24}
+              data-testid="icon-order-id"
               color={
                 orderNumeric
                   ? `${theme.colors.type.fighting}`
@@ -83,6 +83,7 @@ export function Search() {
         </Header>
         <form>
           <Input
+            name="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onClear={() => setSearch("")}
