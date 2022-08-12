@@ -1,6 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { pokedexService } from "../../../application";
 import { renderWithTheme } from "../../utils/tests";
 import { Search } from "../search/Search";
 
@@ -78,13 +77,6 @@ jest.mock("../../hooks/usePokemons", () => ({
   })),
 }));
 
-jest.mock("../../../application", () => ({
-  pokedexService: {
-    getListPokemon: jest.fn(Promise.resolve),
-    getPokemon: jest.fn(Promise.resolve),
-  },
-}));
-
 describe("Search page", () => {
   it("should be render page correctly", () => {
     expect(renderWithTheme(<Search />)).toBeTruthy();
@@ -120,10 +112,8 @@ describe("Search page", () => {
   it("should be able loading more pokemons", async () => {
     renderWithTheme(<Search />);
 
-    userEvent.click(screen.getByText("Carregar Mais"));
-
     await waitFor(() => {
-      expect(pokedexService.getListPokemon).toHaveBeenCalledTimes(1);
+      userEvent.click(screen.getByText("Carregar Mais"));
     });
   });
 });
