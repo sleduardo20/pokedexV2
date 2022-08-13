@@ -1,12 +1,12 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../local/styles/global";
 import { theme } from "../local/styles/theme";
-import { Search } from "./pages/search/Search";
+import { Home } from "./pages";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Search />
+      <Home />
       <GlobalStyles />
     </ThemeProvider>
   );

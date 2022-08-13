@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import { pokedexService } from "../../application";
-import { ListPokemons, Pokemon } from "../../models/PokemonType";
+import { Pokemon } from "../../models/PokemonType";
 
 export const usePokemons = (loadingMore: number) => {
   const [loading, setLoading] = useState(true);
-
   const [params, setParams] = useState("?limit=25");
-  const [listPokemons, setListPokemons] = useState<ListPokemons>(
-    {} as ListPokemons
-  );
 
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
@@ -16,7 +12,6 @@ export const usePokemons = (loadingMore: number) => {
     setLoading(true);
     const newListPokemons = await pokedexService.getListPokemon(params);
     setParams(newListPokemons.next.slice(34));
-    setListPokemons(newListPokemons);
 
     const newPokemons: Pokemon[] = [];
     const promisePokemon = newListPokemons.results.map(async (result) => {
