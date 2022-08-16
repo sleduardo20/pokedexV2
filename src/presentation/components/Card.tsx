@@ -24,6 +24,7 @@ export function Card({ id, name, type, urlImage }: Props) {
 
 const Container = styled.div<{ typePokemon: PokemonType }>`
   text-align: center;
+  cursor: pointer;
   width: 23.2rem;
   padding: 0.4rem 0.4rem 0.4rem;
   height: 24.8rem;
