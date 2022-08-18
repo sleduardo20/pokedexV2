@@ -1,10 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { renderWithTheme } from "../../../utils/tests";
-import { Home } from "../Home";
+import { renderWithTheme } from "../../utils/tests";
+import { Home } from "..";
 
-jest.mock("../../../hooks/usePokemons", () => ({
+jest.mock("../../hooks/usePokemons", () => ({
   usePokemons: jest.fn(() => ({
     pokemons: [
       {
