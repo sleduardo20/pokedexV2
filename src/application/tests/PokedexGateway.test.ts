@@ -6,10 +6,10 @@ import { ListPokemons, Pokemon } from "../../models/PokemonType";
 import { pokedexService } from "../UseServices";
 
 const handles = [
-  rest.get("*/pokemon/pikachu", (_, res, ctx) => {
+  rest.get("**pokemon/pikachu", (_, res, ctx) => {
     return res(ctx.json(pokemonMock as Pokemon));
   }),
-  rest.get("*/pokemon/?offset=25&limit=25", (_, res, ctx) => {
+  rest.get("**pokemon/?limit=25", (_, res, ctx) => {
     return res(ctx.json(listPokeomonMock as ListPokemons));
   }),
 ];
