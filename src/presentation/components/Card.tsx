@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PokemonType } from "../../models/PokemonType";
 
@@ -11,13 +12,15 @@ type Props = {
 export function Card({ id, name, type, urlImage }: Props) {
   return (
     <Container typePokemon={type}>
-      <Content>
-        <picture>
-          <img src={urlImage} alt={name} />
-        </picture>
-        <span>#{id}</span>
-      </Content>
-      <h2>{name}</h2>
+      <Link to={`details/${name}`}>
+        <Content>
+          <picture>
+            <img src={urlImage} alt={name} />
+          </picture>
+          <span>#{id}</span>
+        </Content>
+        <h2>{name}</h2>
+      </Link>
     </Container>
   );
 }
@@ -31,6 +34,10 @@ const Container = styled.div<{ typePokemon: PokemonType }>`
   border-radius: 0.8rem;
   background-color: ${({ theme, typePokemon }) =>
     theme.colors.type[typePokemon]};
+
+  a {
+    text-decoration: none;
+  }
 
   span {
     font-size: 1.8rem;
