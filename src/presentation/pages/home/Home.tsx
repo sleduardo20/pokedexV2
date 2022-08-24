@@ -4,9 +4,7 @@ import { Wrapper } from "../../components/Wrapper";
 import { Input } from "../../components/Input";
 import { IconSortAlphabetical, IconSortNumeric } from "../../components/Icons";
 import { ListCards } from "../../components/ListCards";
-
 import logoPokedex from "../../assets/logoPokedex.svg";
-import { usePokemons } from "../../hooks/usePokemons";
 import { PokemonType } from "../../../models/PokemonType";
 import {
   Container,
@@ -17,13 +15,13 @@ import {
 } from "./styles";
 import { Loading, LoadingMore } from "../../components/Loading";
 import { theme } from "../../../local/styles/theme";
+import { usePokedex } from "../../contexts/usePokedex";
 
 export function Home() {
   const [search, setSearch] = useState("");
-  const [loadingMore, setLoadingMore] = useState(0);
   const [orderNumeric, setOrderNumeric] = useState(true);
+  const { fetchPokemon, loading, pokemons } = usePokedex();
 
-  const { pokemons, loading } = usePokemons(loadingMore);
   const loadingPokemons = pokemons.length === 0;
   const showButtonLoadingMore = pokemons.length > 1;
 
@@ -97,10 +95,7 @@ export function Home() {
             {loading ? (
               <LoadingMore />
             ) : (
-              <button
-                onClick={() => setLoadingMore(loadingMore + 1)}
-                type="button"
-              >
+              <button onClick={fetchPokemon} type="button">
                 Carregar Mais
               </button>
             )}
