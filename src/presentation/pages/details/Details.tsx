@@ -34,12 +34,12 @@ export function Details() {
           <span>#{pokemonDetails.id}</span>
         </header>
         <main>
-          <picture>
+          <figure>
             <img
               src={`${pokemonDetails.sprites.other.dream_world.front_default}`}
               alt={pokemonDetails.name}
             />
-          </picture>
+          </figure>
         </main>
         <article>details</article>
       </Container>

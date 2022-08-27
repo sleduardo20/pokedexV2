@@ -32,6 +32,17 @@ export const Container = styled.div<{ background: PokemonType }>`
   main {
     margin-top: 8rem;
     z-index: 10;
+
+    figure {
+      width: 30rem;
+      height: 27.2rem;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
   }
 
   article {
