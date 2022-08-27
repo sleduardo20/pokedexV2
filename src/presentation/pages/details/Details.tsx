@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import { PokemonType } from "../../../models/PokemonType";
 import { IconArrowLeft } from "../../components/Icons";
 import { Container } from "./styles";
-import { pokemonMock } from "../../../mocks/pokemon";
 import { usePokedex } from "../../contexts/usePokedex";
+import { Wrapper } from "../../components/Wrapper";
 
 export function Details() {
   const { name } = useParams();
   const { pokemons } = usePokedex();
+  const navigate = useNavigate();
 
   const pokemonDetails = pokemons.filter((p) => p.name === name)[0];
 
@@ -23,23 +25,24 @@ export function Details() {
     (_, index) => index === currentPokemon - 1
   )[0];
 
-  console.log({ pokemons, pokemonDetails, nextPokemon, previousPokemon });
   return (
-    <Container background={backgrondTypeColor}>
-      <header>
-        <IconArrowLeft />
-        <strong>{pokemonDetails.name}</strong>
-        <span>#{pokemonDetails.id}</span>
-      </header>
-      <main>
-        <picture>
-          <img
-            src={`${pokemonDetails.sprites.other.dream_world.front_default}`}
-            alt={pokemonDetails.name}
-          />
-        </picture>
-      </main>
-      <article>details</article>
-    </Container>
+    <Wrapper>
+      <Container background={backgrondTypeColor}>
+        <header>
+          <IconArrowLeft size={24} onClick={() => navigate(-1)} />
+          <strong>{pokemonDetails.name}</strong>
+          <span>#{pokemonDetails.id}</span>
+        </header>
+        <main>
+          <picture>
+            <img
+              src={`${pokemonDetails.sprites.other.dream_world.front_default}`}
+              alt={pokemonDetails.name}
+            />
+          </picture>
+        </main>
+        <article>details</article>
+      </Container>
+    </Wrapper>
   );
 }
