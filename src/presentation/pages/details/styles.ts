@@ -27,6 +27,10 @@ export const Container = styled.div<{ background: PokemonType }>`
       font-size: 2.8rem;
       font-weight: 500;
     }
+
+    span {
+      font-size: 2.2rem;
+    }
   }
 
   main {
@@ -44,14 +48,39 @@ export const Container = styled.div<{ background: PokemonType }>`
       object-fit: fill;
     }
   }
+`;
 
-  article {
-    margin-top: -4rem;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    border-radius: 1rem;
+export const InfoDetails = styled.article<{ typeColor: PokemonType }>`
+  margin-top: -10rem;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  padding: 7rem 2rem 2rem;
+  color: ${({ theme, typeColor }) => theme.colors.type[typeColor]};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.black.white};
 
-    background-color: ${({ theme }) => theme.colors.black.white};
+  section:first-of-type {
+    margin-top: 6rem;
   }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.6rem 0;
+  }
+`;
+
+export const TagType = styled.span<{ background: PokemonType }>`
+  background-color: ${({ theme, background }) => theme.colors.type[background]};
+  color: ${({ theme }) => theme.colors.black.white};
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 1.2rem;
+  padding: 0.2rem 1.6rem;
+  margin-right: 2rem;
 `;
