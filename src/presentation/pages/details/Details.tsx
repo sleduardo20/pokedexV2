@@ -1,8 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-
 import { PokemonType } from "../../../models/PokemonType";
 import { IconArrowLeft } from "../../components/Icons";
-import { Container } from "./styles";
+import { Container, InfoDetails, TagType } from "./styles";
 import { usePokedex } from "../../contexts/usePokedex";
 import { Wrapper } from "../../components/Wrapper";
 
@@ -41,7 +40,19 @@ export function Details() {
             />
           </figure>
         </main>
-        <article>details</article>
+        <InfoDetails
+          typeColor={pokemonDetails.types[0].type.name as PokemonType}
+        >
+          <section>
+            {pokemonDetails.types.map(({ type }) => (
+              <TagType key={type.name} background={type.name as PokemonType}>
+                {type.name}
+              </TagType>
+            ))}
+          </section>
+
+          <h3>About</h3>
+        </InfoDetails>
       </Container>
     </Wrapper>
   );
