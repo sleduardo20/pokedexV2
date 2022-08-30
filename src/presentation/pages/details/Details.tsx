@@ -14,16 +14,6 @@ export function Details() {
 
   const backgrondTypeColor = pokemonDetails.types[0].type.name as PokemonType;
 
-  const currentPokemon = pokemons.indexOf(pokemonDetails);
-
-  const nextPokemon = pokemons.filter(
-    (_, index) => index === currentPokemon + 1
-  )[0];
-
-  const previousPokemon = pokemons.filter(
-    (_, index) => index === currentPokemon - 1
-  )[0];
-
   return (
     <Wrapper>
       <Container background={backgrondTypeColor}>
