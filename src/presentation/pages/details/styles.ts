@@ -84,3 +84,33 @@ export const TagType = styled.span<{ background: PokemonType }>`
   padding: 0.2rem 1.6rem;
   margin-right: 2rem;
 `;
+
+export const Features = styled.div`
+  margin-top: 2.8rem;
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Feature = styled.div`
+  color: ${({ theme }) => theme.colors.black.darkGray};
+
+  strong {
+    display: flex;
+    align-items: center;
+
+    small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+`;
+
+export const Divider = styled.div`
+  width: 0.2rem;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.black.lightGray};
+`;
