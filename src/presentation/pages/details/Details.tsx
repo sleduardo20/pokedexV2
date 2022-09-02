@@ -21,8 +21,6 @@ export function Details() {
 
   const backgrondTypeColor = pokemonDetails.types[0].type.name as PokemonType;
 
-  console.log(pokemonDetails);
-
   return (
     <Wrapper>
       <Container background={backgrondTypeColor}>
