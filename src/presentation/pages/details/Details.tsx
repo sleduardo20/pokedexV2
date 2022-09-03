@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { PokemonType } from "../../../models/PokemonType";
-import { IconArrowLeft, IconWeight } from "../../components/Icons";
+import { IconArrowLeft, IconHeight, IconWeight } from "../../components/Icons";
 import {
   Container,
   Divider,
@@ -53,14 +53,14 @@ export function Details() {
           <Features>
             <Feature>
               <strong>
-                <IconWeight size={24} /> {pokemonDetails.weight}{" "}
+                <IconWeight size={20} /> {pokemonDetails.weight}{" "}
               </strong>
               <span>Weight</span>
             </Feature>
             <Divider />
             <Feature>
               <strong>
-                <IconWeight size={24} /> {pokemonDetails.weight}{" "}
+                <IconHeight size={20} /> {pokemonDetails.weight}{" "}
               </strong>
               <span>Height</span>
             </Feature>
@@ -74,6 +74,8 @@ export function Details() {
               <span>Moves</span>
             </Feature>
           </Features>
+
+          <h3>Base Stats</h3>
         </InfoDetails>
       </Container>
     </Wrapper>

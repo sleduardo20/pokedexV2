@@ -82,11 +82,14 @@ export const TagType = styled.span<{ background: PokemonType }>`
   text-transform: capitalize;
   border-radius: 1.2rem;
   padding: 0.2rem 1.6rem;
-  margin-right: 2rem;
+
+  & + & {
+    margin-left: 2rem;
+  }
 `;
 
 export const Features = styled.div`
-  margin-top: 2.8rem;
+  margin: 2.8rem 0;
   display: flex;
   gap: 1.6rem;
   align-items: center;
@@ -95,16 +98,25 @@ export const Features = styled.div`
 
 export const Feature = styled.div`
   color: ${({ theme }) => theme.colors.black.darkGray};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  small {
+    font-weight: 800;
+    display: flex;
+    align-items: space-between;
+    justify-content: center;
+    flex-direction: column;
+  }
 
   strong {
     display: flex;
     align-items: center;
 
-    small {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+    svg {
+      margin-right: 0.8rem;
     }
   }
 `;
